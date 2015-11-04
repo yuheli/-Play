@@ -80,6 +80,8 @@
 		5EAAD623A23724C816F8DC02 /* libPods-BaseProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BaseProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9367B4D91BE9AEDE003C73A7 /* HeroGiftAndRuneModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeroGiftAndRuneModel.h; sourceTree = "<group>"; };
 		9367B4DA1BE9AEDE003C73A7 /* HeroGiftAndRuneModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeroGiftAndRuneModel.m; sourceTree = "<group>"; };
+		9367B4DC1BE9B41D003C73A7 /* DuoWanModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DuoWanModel.h; sourceTree = "<group>"; };
+		9367B4DD1BE9B4AE003C73A7 /* DuoWanRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DuoWanRequest.h; sourceTree = "<group>"; };
 		9367F9991BE848DE007C9047 /* DuoWanNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DuoWanNetManager.h; sourceTree = "<group>"; };
 		9367F99A1BE848DE007C9047 /* DuoWanNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DuoWanNetManager.m; sourceTree = "<group>"; };
 		9367F99C1BE848ED007C9047 /* TuWanNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuWanNetManager.h; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				9367F99D1BE848ED007C9047 /* TuWanNetManager.m */,
 				9367F99F1BE848FD007C9047 /* XiMaNetManager.h */,
 				9367F9A01BE848FD007C9047 /* XiMaNetManager.m */,
+				9367B4DD1BE9B4AE003C73A7 /* DuoWanRequest.h */,
 			);
 			path = NetManager;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				937083011BE77C3800CF050D /* BestGroupModel.m */,
 				9367B4D91BE9AEDE003C73A7 /* HeroGiftAndRuneModel.h */,
 				9367B4DA1BE9AEDE003C73A7 /* HeroGiftAndRuneModel.m */,
+				9367B4DC1BE9B41D003C73A7 /* DuoWanModel.h */,
 			);
 			path = "多玩";
 			sourceTree = "<group>";
