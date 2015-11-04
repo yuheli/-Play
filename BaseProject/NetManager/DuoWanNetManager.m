@@ -24,34 +24,19 @@
 #import "RuneModel.h"
 #import "SumAbilityModel.h"
 #import "BestGroupModel.h"
+#import "HeroGiftAndRuneModel.h"
 //很多具有共同点的东西，可以宏定义
 
+#define kHeroSkinPath       @"http://box.dwstatic.com/apiHeroSkin.php"
 
-//把path写到文件头部，方便下次使用
-#define kHeroPath @"http://lolbox.duowan.com/phone/apiHeroes.php" //免费+全部英雄
-#define kHeroSkipPath @"http://box.dwstatic.com/apiHeroSkin.php" //皮肤
+#define kOSType       @"OSType": [@"iOS" stringByAppendingString\
+:[UIDevice currentDevice].systemVersion] //获取当前系统版本号
 
-#define kHeroVideo @"http://box.dwstatic.com/apiVideoesNormalDuowan.php" //英雄视频
+#define kVersionName    @"versionName": @"2.4.0"
+#define kV              @"v": @140
 
-#define kHeroCZ @"http://db.duowan.com/lolcz/img/ku11/api/lolcz.php" //英雄出装
-
-#define  kHeroDetail @"http://lolbox.duowan.com/phone/apiHeroDetail.php" //英雄资料
-
-#define kHeroChange @"http://db.duowan.com/boxnews/heroinfo.php" //英雄改动
-
-#define kHeroWeek @"http://183.61.12.108/apiHeroWeekData.php" //英雄周数据
-
-#define kHeroToolMenu @"http://box.dwstatic.com/apiToolMenu.php" //英雄游戏百科列表
-#define kHeroZB @"http://lolbox.duowan.com/phone/apiZBCategory.php" //装备分类
-#define kHeroZBitemList @"http://lolbox.duowan.com/phone/apiZBItemList.php" //某分类装备列表
-
-#define kHeroItemDetail @"http://lolbox.duowan.com/phone/apiItemDetail.php" //装备详情
-#define kHeroGft @"http://lolbox.duowan.com/phone/apiGift.php" //天赋
-#define kHeroRune @"http://lolbox.duowan.com/phone/apiRunes.php" //符文列表
-#define kHeroSumAbility @"http://lolbox.duowan.com/phone/apiSumAbility.php" //召唤师技能列表
-#define kHeroBestGroup @"http://box.dwstatic.com/apiHeroBestGroup.php" //最佳阵容
-
-#define kOSTypeV  @"OSType":@"iOS9.1",@"v":@140     //9.1是当前手机系统版本，需要到info.plist文件去取
+#define kOSTypeV  @"OSType":[@"iOS" stringByAppendingString\
+:[UIDevice currentDevice].systemVersion],@"v":@140     //9.1是当前手机系统版本，需要到info.plist文件去取
 #define kSetObjectV(dic)    [dic setValue:@140 forKey:@"v"]
 #define kSetObjectTypeFree(dic) [dic setValue:@"free" forKey:@"type"]
 #define kSetObjectTypeAll(dic) [dic setValue:@"all" forKey:@"type"]
@@ -93,38 +78,47 @@
     }];
 
 }
+
+//通过字典数组来创建一个模型数组
 +(id)getHeroSkipWithHero:(NSString *)heroName completionHandle:(void (^)(id, NSError *))completionHandle
 {
-    NSMutableDictionary *parmas = [NSMutableDictionary dictionaryWithDictionary:@{kOSTypeV}];
-    kSetObjectV(parmas);
-    kSetObjectVersionName(parmas);
-    kSetHeroName(parmas, heroName, @"hero");
-    return [BaseNetManager GET:kHeroSkipPath parameters:parmas completionHandler:^(id responseObj, NSError *error) {
+   
+    return [BaseNetManager GET:kHeroSkipPath parameters:@{kOSTypeV, kVersionName, @"hero": heroName} completionHandler:^(id responseObj, NSError *error) {
         
-        completionHandle([HeroSkinModel objectWithKeyValues:responseObj],error);
+//        completionHandle([HeroSkinModel objectWithKeyValues:responseObj],error);
+        
+        completionHandle([HeroSkinModel objectArrayWithKeyValuesArray:responseObj],error);
+    }];
+}
+
++(id)getHeroSoundsWithHeroName:(NSString *)heroName completionHandle:(void (^)(id, NSError *))completionHandle
+{
+    return [BaseNetManager GET:kHeroSounds parameters:@{kOSTypeV,kVersionName,@"hero":heroName} completionHandler:^(id responseObj, NSError *error) {
+        //JSON数据就是标准数组，不需要解析
+        completionHandle(responseObj,error);
     }];
 }
 
 +(id)getHeroVideoWithHero:(NSString *)heroName pID:(NSInteger)p completionHandle:(void (^)(id, NSError *))completionHandle
 {
-    NSDictionary *parmas = @{@"action" :@"l",@"p":@(p),@"src":@"letv"};
+    NSDictionary *parmas = @{@"action" :@"l",@"p":@(p),@"src":@"letv",@"tag":heroName};
     
-    [parmas setValue:heroName forKey:@"tag"];
+//    [parmas setValue:heroName forKey:@"tag"];
     return [BaseNetManager GET:kHeroVideo parameters:parmas completionHandler:^(id responseObj, NSError *error) {
-        
-        completionHandle([HeroVideoModel objectWithKeyValues:responseObj],error);
+        //responseObj为数组模式
+        completionHandle([HeroVideoModel objectArrayWithKeyValuesArray:responseObj],error);
     }];
 }
 
-+ (id)getHeroCZWithHeroName:(NSString *)heroName limit:(NSInteger)limit completionHandle:(void (^)(id, NSError *))completionHandle
++ (id)getHeroCZWithHeroName:(NSString *)heroName completionHandle:(void (^)(id, NSError *))completionHandle
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{kOSTypeV}];
     kSetHeroName(params, heroName, @"championName");
-    kSetLimit(params, limit);
+    kSetLimit(params,7);
     return [BaseNetManager GET:kHeroCZ parameters:params completionHandler:^(id responseObj, NSError *error) {
         
         
-        completionHandle([HeroCZModel objectWithKeyValues:responseObj],error);
+        completionHandle([HeroCZModel objectArrayWithKeyValuesArray:responseObj],error);
     }];
     
 }
@@ -159,14 +153,14 @@
 {
     return [BaseNetManager GET:kHeroToolMenu parameters:@{kOSTypeV,@"category" :@"database",@"versionName":@"2.4.0"} completionHandler:^(id responseObj, NSError *error) {
         
-        completionHandle([ToolMenuModel objectWithKeyValues:responseObj],error);
+        completionHandle([ToolMenuModel objectArrayWithKeyValuesArray:responseObj],error);
     }];
 }
 +(id)getHeroZBCategoryWithCompletionHandle:(void (^)(id, NSError *))completionHandle
 {
     return [BaseNetManager GET:kHeroZB parameters:@{kOSTypeV,@"versionName":@"2.4.0"} completionHandler:^(id responseObj, NSError *error) {
         
-        completionHandle([ZBCategoryModel objectWithKeyValues:responseObj],error);
+        completionHandle([ZBCategoryModel objectArrayWithKeyValuesArray:responseObj],error);
     }];
 }
 
@@ -174,13 +168,13 @@
 {
     return [BaseNetManager GET:kHeroZBitemList parameters:@{@"tag":@"consumable",kOSTypeV,@"versionName":@"2.4.0"} completionHandler:^(id responseObj, NSError *error) {
         
-        completionHandle([ZBItemModel objectWithKeyValues:responseObj],error);
+        completionHandle([ZBItemModel objectArrayWithKeyValuesArray:responseObj],error);
     }];
 }
 
 +(id)getHeroItemDetailWithID:(NSString *)ID completionHandle:(void (^)(id, NSError *))completionHandle
 {
-    return [BaseNetManager GET:kHeroItemDetail parameters:@{kOSTypeV} completionHandler:^(id responseObj, NSError *error) {
+    return [BaseNetManager GET:kHeroItemDetail parameters:@{kOSTypeV,@"id":ID} completionHandler:^(id responseObj, NSError *error) {
         
         completionHandle([ItemDetailModel objectWithKeyValues:responseObj],error);
     }];
@@ -207,7 +201,7 @@
 {
     return [BaseNetManager GET:kHeroSumAbility parameters:@{kOSTypeV} completionHandler:^(id responseObj, NSError *error) {
         
-        completionHandle([SumAbilityModel objectWithKeyValues:responseObj],error);
+        completionHandle([SumAbilityModel objectArrayWithKeyValuesArray:responseObj],error);
     }];
 }
 
@@ -215,11 +209,17 @@
 {
     return [BaseNetManager GET:kHeroBestGroup parameters:@{kOSTypeV} completionHandler:^(id responseObj, NSError *error) {
         
-        completionHandle([BestGroupModel objectWithKeyValues:responseObj],error);
+        completionHandle([BestGroupModel objectArrayWithKeyValuesArray:responseObj],error);
     }];
 }
 
-
++ (id)getHeroGiftAndRuneWithHeroName:(NSString *)heroName completionHandle:(void (^)(id, NSError *))completionHandle
+{
+    return [BaseNetManager GET:kHeroGiftAndRunPath parameters:@{kOSTypeV,@"hero":heroName} completionHandler:^(id responseObj, NSError *error) {
+        
+        completionHandle([HeroGiftAndRuneModel objectArrayWithKeyValuesArray:responseObj],error);
+    }];
+}
 
 
 

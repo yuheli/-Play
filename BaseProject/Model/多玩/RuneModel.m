@@ -10,7 +10,10 @@
 
 @implementation RuneModel
 
-
++(NSString *)replacedKeyFromPropertyName121:(NSString *)propertyName
+{
+    return [propertyName firstCharUpper];
+}
 + (NSDictionary *)objectClassInArray{
     return @{@"purple" : [RunePurpleModel class], @"yellow" : [RunePurpleModel class], @"blue" : [RunePurpleModel class], @"red" : [RunePurpleModel class]};
 }

@@ -13,6 +13,7 @@
 #import "RankingListModel.h"
 #import "XiMaNetManager.h"
 #import "TuWanNetManager.h"
+#import "DuoWanNetManager.h"
 @interface AppDelegate ()
 
 @end
@@ -30,7 +31,8 @@
 //        TuWanBaseModel *model = [TuWanBaseModel objectWithKeyValues:responseObj];
 //        DDLogVerbose(@"ssssss");
 //    }];
-    
+   
+    /**
     //喜码
     [XiMaNetManager getRankingListWithPageId:1 completionHandle:^(id model, NSError *error) {
         DDLogVerbose(@"sssss"); //
@@ -45,10 +47,142 @@
         
         DDLogVerbose(@"sssss");
     }];
+    */
     
-    //还没有测试
 
-    return YES;
+    [DuoWanNetManager getDuoWanDataWithPath:kHeroPath type:typeAll completionHandle:^(id model, NSError *error) {
+        
+        
+        DDLogVerbose(@"...");
+    }];
+    [DuoWanNetManager getHeroSkipWithHero:@"Braum" completionHandle:^(NSArray *model, NSError *error) {
+        
+         DDLogVerbose(@"...");
+    }];
+
+    [DuoWanNetManager getHeroVideoWithHero:@"Braum" pID:2 completionHandle:^(NSArray *model, NSError *error) {
+        
+         DDLogVerbose(@"...");
+    }];
+    
+    [DuoWanNetManager getHeroSoundsWithHeroName:@"Braum" completionHandle:^(NSArray *model, NSError *error) {
+        DDLogVerbose(@"...");
+
+        
+    }];
+    
+    [DuoWanNetManager getHeroCZWithHeroName:@"Braum" completionHandle:^(id model, NSError *error) {
+        DDLogVerbose(@"...");
+        
+    }];
+    
+    [DuoWanNetManager getHeroDetailWithHeroName:@"Braum" completionHandle:^(id model, NSError *error) {
+        
+          DDLogVerbose(@"...");
+    }];
+    
+    [DuoWanNetManager getHeroChangeWithHeroName:@"Braum" completionHandle:^(id model, NSError *error) {
+        DDLogVerbose(@"...");
+    }];
+    
+    [DuoWanNetManager getHeroWeekWithHerold:72 completionHandle:^(id model, NSError *error) {
+        
+         DDLogVerbose(@"...");
+    }];
+    
+    [DuoWanNetManager getHeroToolMenuWithCompletionHandle:^(id model, NSError *error) {
+        
+        DDLogVerbose(@"...");
+    }];
+    
+    [DuoWanNetManager getHeroZBCategoryWithCompletionHandle:^(id model, NSError *error) {
+        
+        DDLogVerbose(@"...");
+
+    }];
+    
+    [DuoWanNetManager getHeroZBItemWithWithCompletionHandle:^(id model, NSError *error) {
+         DDLogVerbose(@"...");
+        
+    }];
+    
+    [DuoWanNetManager getHeroItemDetailWithID:@"3004" completionHandle:^(id model, NSError *error) {
+        DDLogVerbose(@"...");
+        
+    }];
+    
+    [DuoWanNetManager getGiftWithCompletionHandle:^(id model, NSError *error) {
+        
+        DDLogVerbose(@"...");
+
+    }];
+    
+    [DuoWanNetManager getRunesWithCompletionHandle:^(id model, NSError *error) {
+        DDLogVerbose(@"...");
+
+        
+    }];
+    
+    [DuoWanNetManager getHeroSumAbilityWithCompletionHandle:^(id model, NSError *error) {
+        
+         DDLogVerbose(@"...");
+    }];
+    [DuoWanNetManager getBestGroupWithCompletionHandle:^(id model, NSError *error) {
+        DDLogVerbose(@"...");
+
+        
+    }];
+    [DuoWanNetManager getHeroGiftAndRuneWithHeroName:@"Braum" completionHandle:^(id model, NSError *error) {
+         DDLogVerbose(@"...");
+        
+    }];
+    
+       return YES;
 }
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

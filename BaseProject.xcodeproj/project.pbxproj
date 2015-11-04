@@ -22,6 +22,7 @@
 		3886C0BB1BD74AE90014E661 /* BaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3886C0BA1BD74AE90014E661 /* BaseViewModel.m */; };
 		3886C0BE1BD74AFE0014E661 /* BaseNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3886C0BD1BD74AFE0014E661 /* BaseNetManager.m */; };
 		3886C0C11BD74B090014E661 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3886C0C01BD74B090014E661 /* BaseModel.m */; };
+		9367B4DB1BE9AEDE003C73A7 /* HeroGiftAndRuneModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9367B4DA1BE9AEDE003C73A7 /* HeroGiftAndRuneModel.m */; };
 		9367F99B1BE848DE007C9047 /* DuoWanNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9367F99A1BE848DE007C9047 /* DuoWanNetManager.m */; };
 		9367F99E1BE848ED007C9047 /* TuWanNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9367F99D1BE848ED007C9047 /* TuWanNetManager.m */; };
 		9367F9A11BE848FD007C9047 /* XiMaNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9367F9A01BE848FD007C9047 /* XiMaNetManager.m */; };
@@ -77,6 +78,8 @@
 		3886C0C21BD74B430014E661 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		4329DABFE5AD654FE71597C9 /* Pods-BaseProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaseProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BaseProject/Pods-BaseProject.debug.xcconfig"; sourceTree = "<group>"; };
 		5EAAD623A23724C816F8DC02 /* libPods-BaseProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BaseProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9367B4D91BE9AEDE003C73A7 /* HeroGiftAndRuneModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeroGiftAndRuneModel.h; sourceTree = "<group>"; };
+		9367B4DA1BE9AEDE003C73A7 /* HeroGiftAndRuneModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeroGiftAndRuneModel.m; sourceTree = "<group>"; };
 		9367F9991BE848DE007C9047 /* DuoWanNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DuoWanNetManager.h; sourceTree = "<group>"; };
 		9367F99A1BE848DE007C9047 /* DuoWanNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DuoWanNetManager.m; sourceTree = "<group>"; };
 		9367F99C1BE848ED007C9047 /* TuWanNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuWanNetManager.h; sourceTree = "<group>"; };
@@ -319,6 +322,8 @@
 				937082FE1BE77BA400CF050D /* SumAbilityModel.m */,
 				937083001BE77C3800CF050D /* BestGroupModel.h */,
 				937083011BE77C3800CF050D /* BestGroupModel.m */,
+				9367B4D91BE9AEDE003C73A7 /* HeroGiftAndRuneModel.h */,
+				9367B4DA1BE9AEDE003C73A7 /* HeroGiftAndRuneModel.m */,
 			);
 			path = "多玩";
 			sourceTree = "<group>";
@@ -510,6 +515,7 @@
 				937082FC1BE779BD00CF050D /* RuneModel.m in Sources */,
 				937082CF1BE74AD300CF050D /* FreeHeroModel.m in Sources */,
 				9367F99E1BE848ED007C9047 /* TuWanNetManager.m in Sources */,
+				9367B4DB1BE9AEDE003C73A7 /* HeroGiftAndRuneModel.m in Sources */,
 				9367F9A11BE848FD007C9047 /* XiMaNetManager.m in Sources */,
 				937082D51BE74C3B00CF050D /* HeroSkinModel.m in Sources */,
 				937082D21BE74BBC00CF050D /* AllHeroModel.m in Sources */,
